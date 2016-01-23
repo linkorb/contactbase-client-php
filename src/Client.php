@@ -58,54 +58,54 @@ class Client
             $obj = new Contact();
             $obj->fillData($data);
             $aEmails = [];
-            $aBank = [];
-            $aAddress = [];
-            $aPhone = [];
+            $aBanks = [];
+            $aAddresses = [];
+            $aPhones = [];
             $aNotes = [];
             $aRelations = [];
 
-            if (count($data['email']) > 0) {
-                foreach ($data['email'] as $email) {
+            if (count($data['emails']) > 0) {
+                foreach ($data['emails'] as $email) {
                     $oContactEmail = new ContactEmail();
                     $oContactEmail->fillData($email);
                     $aEmails[] = $oContactEmail;
                 }
             }
 
-            if (count($data['bank']) > 0) {
-                foreach ($data['bank'] as $bank) {
+            if (count($data['banks']) > 0) {
+                foreach ($data['banks'] as $bank) {
                     $oContactBank = new ContactBank();
                     $oContactBank->fillData($bank);
-                    $aBank[] = $oContactBank;
+                    $aBanks[] = $oContactBank;
                 }
             }
 
-            if (count($data['address']) > 0) {
-                foreach ($data['address'] as $oAddress) {
+            if (count($data['addresses']) > 0) {
+                foreach ($data['addresses'] as $oAddress) {
                     $oContactAddress = new ContactAddress();
                     $oContactAddress->fillData($oAddress);
-                    $aAddress[] = $oContactAddress;
+                    $aAddresses[] = $oContactAddress;
                 }
             }
 
-            if (count($data['phone']) > 0) {
-                foreach ($data['phone'] as $phone) {
+            if (count($data['phones']) > 0) {
+                foreach ($data['phones'] as $phone) {
                     $oContactPhone = new ContactPhone();
                     $oContactPhone->fillData($phone);
-                    $aPhone[] = $oContactPhone;
+                    $aPhones[] = $oContactPhone;
                 }
             }
 
-            if (count($data['note']) > 0) {
-                foreach ($data['note'] as $note) {
-                    $oContactNote = new ContactPhone();
+            if (count($data['notes']) > 0) {
+                foreach ($data['notes'] as $note) {
+                    $oContactNote = new ContactNote();
                     $oContactNote->fillData($note);
                     $aNotes[] = $oContactNote;
                 }
             }
 
-            if (count($data['relation']) > 0) {
-                foreach ($data['relation'] as $oRelation) {
+            if (count($data['relations']) > 0) {
+                foreach ($data['relations'] as $oRelation) {
                     $oContactRelation = new ContactRelation();
                     $oContactRelation->fillData($oRelation);
                     $aRelations[] = $oContactRelation;
@@ -113,9 +113,9 @@ class Client
             }
 
             $obj->setEmails($aEmails);
-            $obj->setBanks($aBank);
-            $obj->setAddress($aAddress);
-            $obj->setPhone($aPhone);
+            $obj->setBanks($aBanks);
+            $obj->setAddresses($aAddresses);
+            $obj->setPhones($aPhones);
             $obj->setNotes($aNotes);
             $obj->setRelations($aRelations);
             return $obj;

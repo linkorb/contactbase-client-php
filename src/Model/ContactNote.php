@@ -7,7 +7,6 @@ use Radvance\Model\BaseModel;
 class ContactNote
 {
     protected $id;
-    protected $contact_id;
     protected $body;
     protected $created_at;
     protected $created_by;
@@ -22,17 +21,6 @@ class ContactNote
     public function setId($id)
     {
         $this->id = $id;
-        return $this;
-    }
-
-    public function getContactId()
-    {
-        return $this->contact_id;
-    }
-
-    public function setContactId($contact_id)
-    {
-        $this->contact_id = $contact_id;
         return $this;
     }
 
@@ -55,6 +43,7 @@ class ContactNote
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+        return $this;
     }
 
     public function getCreatedBy()
@@ -93,7 +82,6 @@ class ContactNote
     public function fillData($data)
     {
         $this->setId($data['id'])
-        ->setContactId($data['contact_id'])
         ->setBody($data['body'])
         ->setCreatedAt($data['created_at'])
         ->setCreatedBy($data['created_by'])

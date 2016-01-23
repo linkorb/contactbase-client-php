@@ -9,10 +9,10 @@ class Contact
     protected $display_name;
     protected $Emails;
     protected $Banks;
-    protected $address;
-    protected $phone;
+    protected $addresses;
+    protected $phones;
     protected $notes;
-    protected $relation;
+    protected $relations;
 
     public function getId()
     {
@@ -80,25 +80,25 @@ class Contact
          return $this;
     }
 
-    public function getAddress()
+    public function getAddresses()
     {
-        return $this->address;
+        return $this->addresses;
     }
 
-    public function setAddress($address)
+    public function setAddresses($addresses)
     {
-        $this->address = $address;
+        $this->addresses = $addresses;
         return $this;
     }
 
-    public function getPhone()
+    public function getPhones()
     {
-        return $this->phone;
+        return $this->phones;
     }
 
-    public function setPhone($phone)
+    public function setPhones($phones)
     {
-        $this->phone = $phone;
+        $this->phones = $phones;
         return $this;
     }
 

@@ -1,11 +1,11 @@
 <?php
 include_once __dir__ . '/../vendor/autoload.php';
-$username = 'username';
-$password = 'password';
-$baseUrl = 'http://contactbase.linkorb.com';
+$username =  'username';
+$password =  'password';
+$baseUrl =   'http://contactbase.linkorb.com';
 $oContactBase = new \ContactBase\Client\Client($username, $password, $baseUrl);
-$accountName = 'accountName';
-$bookName =  'bookName';
+$accountName =  'accountName';
+$bookName =   'bookName';
 $contactId = 0;
 
 try {
@@ -21,7 +21,7 @@ try {
             echo $entity->getDisplayName();
         }
     }
-    
+
     //-- contact details + sub-records --//
     $entity = $oContactBase->getContactDetail($accountName, $bookName, $contactId);
     if ($entity) {
@@ -34,7 +34,6 @@ try {
         echo '-- Contact Emails --';
         foreach ($entity->getEmails() as $oEmail) {
             echo $oEmail->getId();
-            echo $oEmail->getContactId();
             echo $oEmail->getEmail();
             echo $oEmail->getDescription();
         }
@@ -43,16 +42,14 @@ try {
         echo '-- Contact Bank --';
         foreach ($entity->getBanks() as $oBank) {
             echo $oBank->getId();
-            echo $oBank->getContactId();
             echo $oBank->getBanknr();
             echo $oBank->getDescription();
         }
 
         //-- address --//
         echo '-- Contact Address --';
-        foreach ($entity->getAddress() as $oAddress) {
+        foreach ($entity->getAddresses() as $oAddress) {
             echo $oAddress->getId();
-            echo $oAddress->getContactId();
             echo $oAddress->getAddressline1();
             echo $oAddress->getAddressline2();
             echo $oAddress->getPostalcode();
@@ -62,9 +59,8 @@ try {
 
         //-- Contact Phone --//
         echo '-- Contact Phone --';
-        foreach ($entity->getPhone() as $oPhone) {
+        foreach ($entity->getPhones() as $oPhone) {
             echo $oPhone->getId();
-            echo $oPhone->getContactId();
             echo $oPhone->getPhone();
             echo $oPhone->getDescription();
         }
@@ -84,7 +80,6 @@ try {
         echo '-- Contact Relations --';
         foreach ($entity->getRelations() as $oRelation) {
             echo $oRelation->getId();
-            echo $oRelation->getContactId();
             echo $oRelation->getRelationId();
             echo $oRelation->getType();
             echo $oRelation->getRelationReference();

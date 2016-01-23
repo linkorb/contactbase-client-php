@@ -4,7 +4,6 @@ namespace ContactBase\Client\Model;
 class ContactAddress
 {
     protected $id;
-    protected $contact_id;
     protected $addressline1;
     protected $addressline2;
     protected $postalcode;
@@ -19,17 +18,6 @@ class ContactAddress
     public function setId($id)
     {
         $this->id = $id;
-        return $this;
-    }
-
-    public function getContactId()
-    {
-        return $this->contact_id;
-    }
-
-    public function setContactId($contact_id)
-    {
-        $this->contact_id = $contact_id;
         return $this;
     }
 
@@ -91,7 +79,6 @@ class ContactAddress
     public function fillData($data)
     {
         $this->setId($data['id'])
-        ->setContactId($data['contact_id'])
         ->setAddressline1($data['addressline1'])
         ->setAddressline2($data['addressline2'])
         ->setPostalCode($data['postalcode'])
