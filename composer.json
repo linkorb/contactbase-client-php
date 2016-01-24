@@ -1,0 +1,37 @@
+{
+    "name": "linkorb/contactbase-client-php",
+    "description": "ContactBase api client",
+    "homepage": "https://github.com/linkorb/contactbase-client-php",
+    "license": "MIT",
+    "type": "library",
+
+    "require": {
+        "php": ">=5.3",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+
+    "require-dev": {
+        "ext-curl": "*"
+    },
+
+    "keywords": [ "linkorb", "project", "php", "api client for contactbase" ],
+
+    "authors": [
+        {
+            "name": "LinkORB",
+            "email": "engineering@linkorb.com",
+            "role": "Development"
+        },
+        {
+            "name": "LinkORB Engineering",
+            "email": "engineering@linkorb.com",
+            "role": "Development"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "ContactBase\\Client\\": "src/"
+        }
+    }
+}
