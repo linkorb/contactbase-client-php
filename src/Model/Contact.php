@@ -132,4 +132,23 @@ class Contact
         ->setDisplayName($data['display_name'])
         ;
     }
+    
+    public function retriveData() {
+        $getData = function ($val) {
+            return $val->retriveData() ;
+        } ;
+        
+        return array(
+            'id' => $this->getId(),
+            'book_id' => $this->getBookId(),
+            'reference' => $this->getReference(),
+            'display_name' => $this->getDisplayName(),
+            'emails' => array_map($getData, $this->getEmails() ), 
+            'banks' => array_map($getData, $this->getBanks() ),
+            'addresses' => array_map($getData, $this->getAddresses() ),
+            'phones' => array_map($getData, $this->getPhones() ),
+            'notes' => array_map($getData, $this->getNotes() ),
+            'relations' => array_map($getData, $this->getRelations() )
+        ) ;
+    }
 }

@@ -53,6 +53,7 @@ class Client
         );
 
         if ($res->getStatusCode() == 200) {
+            echo $res->getBody()."\n" ;
             $data = json_decode($res->getBody(), true);
 
             $obj = new Contact();
@@ -121,5 +122,23 @@ class Client
             return $obj;
         }
         throw new \Exception(json_decode($res->getBody(), true)['error'], $res->getStatusCode());
+    }
+    
+    public function addContact($accountName, $bookName, $contact, $campaignId = null) {
+        $url = $this->baseUrl.'/api/v1/'.$accountName.'/'.$bookName.'/contact/add' ;
+        $data = $contact->retriveData() ;
+        
+        if(isset($campaignId)) {
+            $data['campaign_id'] = $campaignId ;
+        }
+        
+        $res = $this->httpClient->post($url, [
+            'auth' => [$this->username, $this->password],
+            'body' => json_encode($data)
+        ]);
+        
+        echo $res ;
+        //$response = $request->send();
+        // ...
     }
 }

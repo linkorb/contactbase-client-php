@@ -73,4 +73,8 @@ class ContactRelation
         ->setRelationReference($data['relation_reference'])
         ;
     }
+
+    public function retriveData() {
+        return get_object_vars($this) ;
+    }
 }
