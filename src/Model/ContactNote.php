@@ -86,7 +86,11 @@ class ContactNote
         ->setCreatedAt($data['created_at'])
         ->setCreatedBy($data['created_by'])
         ->setUpdatedAt($data['updated_at'])
-        ->setUpdatedBy($tata['updated_by'])
+        ->setUpdatedBy($data['updated_by'])
         ;
+    }
+
+    public function retriveData() {
+        return get_object_vars($this) ;
     }
 }

@@ -47,4 +47,8 @@ class ContactBank
         ->setDescription($data['description'])
         ;
     }
+
+    public function retriveData() {
+        return get_object_vars($this) ;
+    }
 }

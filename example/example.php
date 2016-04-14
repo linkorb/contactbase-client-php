@@ -7,6 +7,7 @@ $oContactBase = new \ContactBase\Client\Client($username, $password, $baseUrl);
 $accountName =  'accountName';
 $bookName =   'bookName';
 $contactId = 0;
+$campaignId = null;
 
 try {
     //--  list all contacts --//
@@ -85,7 +86,14 @@ try {
             echo $oRelation->getRelationReference();
             echo $oRelation->getComment();
         }
+        
+        // change some fields in existed contact and it as new contact
+        $entity->setReference('test_reference_'.rand()) ;
+        $entity->setDisplayName('test_name_'.rand()) ;
 
+        // change $campaignId from null to valid id for add contact into campaign
+        $oContactBase->addContact($accountName, $bookName, $entity, $campaignId) ;
+        
     }
 
     // returns rendered html

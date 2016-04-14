@@ -86,4 +86,8 @@ class ContactAddress
         ->setCountry($data['country'])
         ;
     }
+    
+    public function retriveData() {
+        return get_object_vars($this) ;
+    }
 }
