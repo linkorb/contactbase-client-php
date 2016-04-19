@@ -53,7 +53,6 @@ class Client
         );
 
         if ($res->getStatusCode() == 200) {
-            echo $res->getBody()."\n" ;
             $data = json_decode($res->getBody(), true);
 
             $obj = new Contact();
@@ -137,8 +136,21 @@ class Client
             'body' => json_encode($data)
         ]);
         
-        echo $res ;
-        //$response = $request->send();
-        // ...
+        if($res->getStatusCode() == 200) {
+            return true ;
+        } else {
+            throw new \Exception(json_decode($res->getBody(), true)['error'], $res->getStatusCode());
+        }
+    }
+    
+    public function addContactToCampaign($accountName, $bookName, $contactId, $campaignId) {
+        $url = $this->baseUrl.'/api/v1/'.$accountName.'/'.$bookName.'/campaign/'.$campaignId.'/addcontact/'.$contactId ;
+        $res = $this->httpClient->get($url, ['auth' => [$this->username, $this->password]]);
+
+        if($res->getStatusCode() == 200) {
+            return true ;
+        } else {
+            throw new \Exception(json_decode($res->getBody(), true)['error'], $res->getStatusCode());
+        }
     }
 }
