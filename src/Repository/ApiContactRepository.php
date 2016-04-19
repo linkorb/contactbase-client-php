@@ -3,76 +3,78 @@
 namespace ContactBase\Client\Repository;
 
 use ContactBase\Client\Client;
-use ContactBase\Client\Model;
 
-class ApiContactRepository {
-    
-    private $oContactBase ;
-    private $accountName ;
-    private $bookName ;
-    private $entities ;
-    private $loaded ;
-    
+class ApiContactRepository
+{
+    private $oContactBase;
+    private $accountName;
+    private $bookName;
+    private $entities;
+    private $loaded;
+
     public function __construct($username, $password, $baseUrl, $accountName, $bookName)
     {
         $this->oContactBase = new Client($username, $password, $baseUrl);
-        $this->accountName = $accountName ;
-        $this->bookName = $bookName ;
-        $this->entities = array() ;
-        $this->loaded = false ;
+        $this->accountName = $accountName;
+        $this->bookName = $bookName;
+        $this->entities = array();
+        $this->loaded = false;
     }
 
     public function createEntity()
     {
         return Contact::createNew();
     }
-    
-    private function loadEntities() {
+
+    private function loadEntities()
+    {
         try {
             $res = $this->oContactBase->getContacts($this->accountName, $this->bookName);
         } catch (\Exception $e) {
-            if($e->getCode() == 404) {
-                $res = null ;
+            if ($e->getCode() == 404) {
+                $res = null;
             } else {
                 throw $e;
             }
         }
-        return $res ;
+
+        return $res;
     }
-    
-    private function loadEntity($contactId) {
+
+    private function loadEntity($contactId)
+    {
         try {
             $res = $this->oContactBase->getContactDetail($this->accountName, $this->bookName, $contactId);
         } catch (\Exception $e) {
-            if($e->getCode() == 404) {
-                $res = null ;
+            if ($e->getCode() == 404) {
+                $res = null;
             } else {
                 throw $e;
             }
         }
-        return $res ;
+
+        return $res;
     }
 
     public function customFindBy($where, $searchText = '')
     {
-        $res = array() ;
-        $entities = $this->findBy($where) ;
-        
-        if(!is_null($entities)) {
-            if($searchText == '') {
-                $res = $entities ;
+        $res = array();
+        $entities = $this->findBy($where);
+
+        if (!is_null($entities)) {
+            if ($searchText == '') {
+                $res = $entities;
             } else {
-                foreach($entities as $key => $val) {
-                    if( mb_stripos($val->getReference(), $searchText) !== false || 
-                        mb_stripos($val->getDisplayName(), $searchText) !== false ) {
-                            
-                        $res[] = $val ;
+                foreach ($entities as $key => $val) {
+                    if (mb_stripos($val->getReference(), $searchText) !== false ||
+                        mb_stripos($val->getDisplayName(), $searchText) !== false) {
+                        $res[] = $val;
                     }
                 }
             }
-
         }
-        return $res ;
+
+        return $res;
     }
 
     public function getTable()
@@ -112,75 +114,78 @@ class ApiContactRepository {
 
     public function findOneOrNullBy($where)
     {
-        $entity = null ;
-        $entities = array() ;
-        $isFound = false ;
-        if(isset($where['id'])) {
+        $entity = null;
+        $entities = array();
+        $isFound = false;
+        if (isset($where['id'])) {
             // If 'id' set - then load record with the given id, then filter by other fields
-            $entities[] = $this->loadEntity($where['id']) ;
+            $entities[] = $this->loadEntity($where['id']);
         } else {
             // If 'id' not set - load all records, then filter it one by one
-            $entities = $this->loadEntities() ;
+            $entities = $this->loadEntities();
         }
-        
-        if(!is_null($entities) && sizeof($entities) > 0) {
-            foreach($entities as $key => $val) {
-                $isFound = true ;
-                if(isset($where['reference'])) {
-                    $isFound &= $where['reference'] == $val->getReference() ;
+
+        if (!is_null($entities) && sizeof($entities) > 0) {
+            foreach ($entities as $key => $val) {
+                $isFound = true;
+                if (isset($where['reference'])) {
+                    $isFound &= $where['reference'] == $val->getReference();
                 }
-                if(isset($where['display_name'])) {
-                    $isFound &= $where['display_name'] == $val->getDisplayName() ;
+                if (isset($where['display_name'])) {
+                    $isFound &= $where['display_name'] == $val->getDisplayName();
                 }
-                if($isFound) {
-                    $entity = $val ;
-                    break ;
+                if ($isFound) {
+                    $entity = $val;
+                    break;
                 }
             }
         }
-        return $entity ;
+
+        return $entity;
     }
 
     public function findAll()
     {
-        return $this->loadEntities() ;
+        return $this->loadEntities();
     }
 
     public function findBy($where)
     {
-        $res = array() ;
-        $entities = array() ;
-        $isFound = false ;
-        if(isset($where['id'])) {
+        $res = array();
+        $entities = array();
+        $isFound = false;
+        if (isset($where['id'])) {
             // If 'id' set - then load record with the given id, then filter by other fields
-            $entities[] = $this->loadEntity($where['id']) ;
+            $entities[] = $this->loadEntity($where['id']);
         } else {
             // If 'id' not set - load all records, then filter it one by one
-            $entities = $this->loadEntities() ;
+            $entities = $this->loadEntities();
         }
-        
-        if(!is_null($entities) && sizeof($entities) > 0) {
-            foreach($entities as $key => $val) {
-                $isFound = true ;
-                if(isset($where['reference'])) {
-                    $isFound &= $where['reference'] == $val->getReference() ;
+
+        if (!is_null($entities) && sizeof($entities) > 0) {
+            foreach ($entities as $key => $val) {
+                $isFound = true;
+                if (isset($where['reference'])) {
+                    $isFound &= $where['reference'] == $val->getReference();
                 }
-                if(isset($where['display_name'])) {
-                    $isFound &= $where['display_name'] == $val->getDisplayName() ;
+                if (isset($where['display_name'])) {
+                    $isFound &= $where['display_name'] == $val->getDisplayName();
                 }
-                if($isFound) {
-                    $res[] = $val ;
+                if ($isFound) {
+                    $res[] = $val;
                 }
             }
         }
-        return $res ;
+
+        return $res;
     }
 
     public function persist(ModelInterface $entity)
     {
         // we can only add new contact, not update existing (no api call for this now)
-        $this->oContactBase->addContact($this->accountName, $this->bookName, $entity) ;
-        return true ;
+        $this->oContactBase->addContact($this->accountName, $this->bookName, $entity);
+
+        return true;
     }
 
     public function remove(ModelInterface $entity)
@@ -194,5 +199,4 @@ class ApiContactRepository {
             return sprintf("%s='%s'", $k, $v);
         }, $where, array_keys($where)));
     }
-
 }
