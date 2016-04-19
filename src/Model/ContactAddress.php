@@ -1,4 +1,5 @@
 <?php
+
 namespace ContactBase\Client\Model;
 
 class ContactAddress
@@ -18,6 +19,7 @@ class ContactAddress
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -29,6 +31,7 @@ class ContactAddress
     public function setAddressline1($addressline1)
     {
         $this->addressline1 = $addressline1;
+
         return $this;
     }
 
@@ -40,6 +43,7 @@ class ContactAddress
     public function setAddressline2($addressline2)
     {
         $this->addressline2 = $addressline2;
+
         return $this;
     }
 
@@ -51,6 +55,7 @@ class ContactAddress
     public function setPostalcode($postalcode)
     {
         $this->postalcode = $postalcode;
+
         return $this;
     }
 
@@ -62,6 +67,7 @@ class ContactAddress
     public function setCity($city)
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -73,6 +79,7 @@ class ContactAddress
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -86,8 +93,9 @@ class ContactAddress
         ->setCountry($data['country'])
         ;
     }
-    
-    public function retriveData() {
-        return get_object_vars($this) ;
+
+    public function retriveData()
+    {
+        return get_object_vars($this);
     }
 }

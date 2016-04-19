@@ -1,4 +1,5 @@
 <?php
+
 namespace ContactBase\Client\Model;
 
 class ContactRelation
@@ -17,6 +18,7 @@ class ContactRelation
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -28,6 +30,7 @@ class ContactRelation
     public function setRelationId($relation_id)
     {
         $this->relation_id = $relation_id;
+
         return $this;
     }
 
@@ -39,6 +42,7 @@ class ContactRelation
     public function setType($type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -50,6 +54,7 @@ class ContactRelation
     public function setComment($comment)
     {
         $this->comment = $comment;
+
         return $this;
     }
 
@@ -61,6 +66,7 @@ class ContactRelation
     public function setRelationReference($relation_reference)
     {
         $this->relation_reference = $relation_reference;
+
         return $this;
     }
 
@@ -74,7 +80,8 @@ class ContactRelation
         ;
     }
 
-    public function retriveData() {
-        return get_object_vars($this) ;
+    public function retriveData()
+    {
+        return get_object_vars($this);
     }
 }

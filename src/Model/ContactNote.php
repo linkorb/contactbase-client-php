@@ -1,8 +1,6 @@
 <?php
-namespace ContactBase\Client\Model;
 
-use Radvance\Model\ModelInterface;
-use Radvance\Model\BaseModel;
+namespace ContactBase\Client\Model;
 
 class ContactNote
 {
@@ -21,6 +19,7 @@ class ContactNote
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -32,6 +31,7 @@ class ContactNote
     public function setBody($body)
     {
         $this->body = $body;
+
         return $this;
     }
 
@@ -43,6 +43,7 @@ class ContactNote
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+
         return $this;
     }
 
@@ -54,6 +55,7 @@ class ContactNote
     public function setCreatedBy($created_by)
     {
         $this->created_by = $created_by;
+
         return $this;
     }
 
@@ -65,6 +67,7 @@ class ContactNote
     public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
+
         return $this;
     }
 
@@ -76,6 +79,7 @@ class ContactNote
     public function setUpdatedBy($updated_by)
     {
         $this->updated_by = $updated_by;
+
         return $this;
     }
 
@@ -90,7 +94,8 @@ class ContactNote
         ;
     }
 
-    public function retriveData() {
-        return get_object_vars($this) ;
+    public function retriveData()
+    {
+        return get_object_vars($this);
     }
 }

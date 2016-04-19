@@ -1,4 +1,5 @@
 <?php
+
 namespace ContactBase\Client\Model;
 
 class ContactEmail
@@ -15,6 +16,7 @@ class ContactEmail
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -26,6 +28,7 @@ class ContactEmail
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -37,6 +40,7 @@ class ContactEmail
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -47,8 +51,9 @@ class ContactEmail
         ->setDescription($data['description'])
         ;
     }
-    
-    public function retriveData() {
-        return get_object_vars($this) ;
+
+    public function retriveData()
+    {
+        return get_object_vars($this);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace ContactBase\Client\Model;
 
 class Contact
@@ -22,6 +23,7 @@ class Contact
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -33,6 +35,7 @@ class Contact
     public function setBookId($book_id)
     {
         $this->book_id = $book_id;
+
         return $this;
     }
 
@@ -44,6 +47,7 @@ class Contact
     public function setReference($reference)
     {
         $this->reference = $reference;
+
         return $this;
     }
 
@@ -55,6 +59,7 @@ class Contact
     public function setDisplayName($display_name)
     {
         $this->display_name = $display_name;
+
         return $this;
     }
 
@@ -66,18 +71,20 @@ class Contact
     public function setEmails($Emails)
     {
         $this->Emails = $Emails;
+
         return $this;
     }
 
     public function getBanks()
     {
-         return $this->Banks;
+        return $this->Banks;
     }
 
     public function setBanks($Banks)
     {
-         $this->Banks = $Banks;
-         return $this;
+        $this->Banks = $Banks;
+
+        return $this;
     }
 
     public function getAddresses()
@@ -88,6 +95,7 @@ class Contact
     public function setAddresses($addresses)
     {
         $this->addresses = $addresses;
+
         return $this;
     }
 
@@ -99,6 +107,7 @@ class Contact
     public function setPhones($phones)
     {
         $this->phones = $phones;
+
         return $this;
     }
 
@@ -110,6 +119,7 @@ class Contact
     public function setNotes($notes)
     {
         $this->notes = $notes;
+
         return $this;
     }
 
@@ -121,6 +131,7 @@ class Contact
     public function setRelations($relations)
     {
         $this->relations = $relations;
+
         return $this;
     }
 
@@ -132,23 +143,24 @@ class Contact
         ->setDisplayName($data['display_name'])
         ;
     }
-    
-    public function retriveData() {
+
+    public function retriveData()
+    {
         $getData = function ($val) {
-            return $val->retriveData() ;
-        } ;
-        
+            return $val->retriveData();
+        };
+
         return array(
             'id' => $this->getId(),
             'book_id' => $this->getBookId(),
             'reference' => $this->getReference(),
             'display_name' => $this->getDisplayName(),
-            'emails' => array_map($getData, $this->getEmails() ), 
-            'banks' => array_map($getData, $this->getBanks() ),
-            'addresses' => array_map($getData, $this->getAddresses() ),
-            'phones' => array_map($getData, $this->getPhones() ),
-            'notes' => array_map($getData, $this->getNotes() ),
-            'relations' => array_map($getData, $this->getRelations() )
-        ) ;
+            'emails' => array_map($getData, $this->getEmails()),
+            'banks' => array_map($getData, $this->getBanks()),
+            'addresses' => array_map($getData, $this->getAddresses()),
+            'phones' => array_map($getData, $this->getPhones()),
+            'notes' => array_map($getData, $this->getNotes()),
+            'relations' => array_map($getData, $this->getRelations()),
+        );
     }
 }
