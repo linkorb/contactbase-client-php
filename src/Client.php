@@ -1,4 +1,5 @@
 <?php
+
 namespace ContactBase\Client;
 
 use GuzzleHttp\Client as GuzzleClient;
