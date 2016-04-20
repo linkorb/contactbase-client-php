@@ -124,7 +124,8 @@ class Client
         throw new \Exception(json_decode($res->getBody(), true)['error'], $res->getStatusCode());
     }
     
-    public function addContact($accountName, $bookName, $contact, $campaignId = null) {
+    public function addContact($accountName, $bookName, $contact, $campaignId = null) 
+    {
         $url = $this->baseUrl.'/api/v1/'.$accountName.'/'.$bookName.'/contact/add' ;
         $data = $contact->retriveData() ;
         
@@ -144,7 +145,8 @@ class Client
         }
     }
     
-    public function addContactToCampaign($accountName, $bookName, $contactId, $campaignId) {
+    public function addContactToCampaign($accountName, $bookName, $contactId, $campaignId) 
+    {
         $url = $this->baseUrl.'/api/v1/'.$accountName.'/'.$bookName.'/campaign/'.$campaignId.'/addcontact/'.$contactId ;
         $res = $this->httpClient->get($url, ['auth' => [$this->username, $this->password]]);
 
@@ -154,4 +156,5 @@ class Client
             throw new \Exception(json_decode($res->getBody(), true)['error'], $res->getStatusCode());
         }
     }
+    
 }
