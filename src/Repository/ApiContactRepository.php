@@ -3,8 +3,9 @@
 namespace ContactBase\Client\Repository;
 
 use ContactBase\Client\Client;
+use Minerva\Orm\RepositoryInterface;
 
-class ApiContactRepository
+class ApiContactRepository implements RepositoryInterface
 {
     private $oContactBase;
     private $accountName;
@@ -19,6 +20,11 @@ class ApiContactRepository
         $this->bookName = $bookName;
         $this->entities = array();
         $this->loaded = false;
+    }
+    
+    public function getModelClassName()
+    {
+        return 'ContactBase\Client\Model\Contact';
     }
 
     public function createEntity()
@@ -78,6 +84,11 @@ class ApiContactRepository
     }
 
     public function getTable()
+    {
+        return $this->getTableName();
+    }
+
+    public function getTableName()
     {
         return 'api_contact';
     }
