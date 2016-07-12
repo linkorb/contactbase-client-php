@@ -32,6 +32,13 @@ class ApiContactRepository implements RepositoryInterface
         return Contact::createNew();
     }
 
+    protected $filter = [];
+        
+    public function setFilter($filter)
+    {
+        $this->filter = $filter;
+    }
+
     private function loadEntities()
     {
         try {
